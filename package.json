@@ -35,10 +35,5 @@
     "url": "https://github.com/jaid/tsconfig-jaid"
   },
   "homepage": "https://github.com/Jaid/tsconfig-jaid",
-  "keywords": [
-    "browserslist",
-    "browserslist-config",
-    "browserslist-custom",
-    "browserslist-shareable-config"
-  ]
+  "keywords": []
 }
