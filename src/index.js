@@ -1,24 +1,16 @@
 /** @module tsconfig-jaid */
 
+const baseConfig = require("./base.json")
+const reactConfig = require("./react.json")
+
 /**
  * Exports an extendable TypeScript config
- * @type {object}
+ * @param {object} options
+ * @return {object}
  */
-module.exports = {
-  compilerOptions: {
-    allowJs: true,
-    checkJs: true,
-    baseUrl: ".",
-    outDir: "dist/typescript",
-    newLine: "lf",
-    declaration: true,
-    emitDeclarationOnly: true,
-    resolveJsonModule: true,
-    esModuleInterop: true,
-    paths: {
-      "lib/*": ["src/lib/*"],
-      "src/*": ["src/*"],
-      "root/*": ["./*"],
-    },
-  },
+module.exports = options => {
+  if (options?.react) {
+    return reactConfig
+  }
+  return baseConfig
 }

@@ -7,4 +7,8 @@ export default configure({
     umdNamedDefine: false,
     library: null,
   },
+  include: [
+    "src/base.json",
+    "src/react.json",
+  ],
 })
