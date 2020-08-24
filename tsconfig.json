@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfigBase.json",
+  "include": [
+    "src/**/*.js",
+    "src/**/*.ts"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  }
+}
