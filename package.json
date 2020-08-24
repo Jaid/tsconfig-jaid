@@ -34,5 +34,12 @@
     "url": "https://github.com/jaid/tsconfig-jaid"
   },
   "homepage": "https://github.com/Jaid/tsconfig-jaid",
-  "keywords": []
+  "keywords": [
+    "config",
+    "tsc",
+    "tsconfig",
+    "typescript",
+    "typescript-config",
+    "typescript-shareable-config"
+  ]
 }
