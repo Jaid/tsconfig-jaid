@@ -44,7 +44,6 @@ After installation, you can include the shared properties of `tsconfig-jaid` in 
 ### Node
 
 `YOURPROJECT/tsconfig.json`
-
 ```json
 {
   "extends": "tsconfig-jaid/base"
@@ -54,7 +53,6 @@ After installation, you can include the shared properties of `tsconfig-jaid` in 
 ### React
 
 `YOURPROJECT/tsconfig.json`
-
 ```json
 {
   "extends": "tsconfig-jaid/react"
