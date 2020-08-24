@@ -16,20 +16,20 @@
 <a href="https://npmjs.com/package/tsconfig-jaid"><img src="https://img.shields.io/badge/npm-tsconfig--jaid-C23039?style=flat-square&logo=npm" alt="tsconfig-jaid on npm"/></a>
 
 ```bash
-npm install --save tsconfig-jaid@^2.0.0
+npm install --save-dev tsconfig-jaid@^2.0.0
 ```
 
 <a href="https://yarnpkg.com/package/tsconfig-jaid"><img src="https://img.shields.io/badge/Yarn-tsconfig--jaid-2F8CB7?style=flat-square&logo=yarn&logoColor=white" alt="tsconfig-jaid on Yarn"/></a>
 
 ```bash
-yarn add tsconfig-jaid@^2.0.0
+yarn add --dev tsconfig-jaid@^2.0.0
 ```
 
 <a href="https://github.com/jaid/tsconfig-jaid/packages"><img src="https://img.shields.io/badge/GitHub Packages-@jaid/tsconfig--jaid-24282e?style=flat-square&logo=github" alt="@jaid/tsconfig-jaid on GitHub Packages"/></a>  
 (if [configured properly](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages))
 
 ```bash
-npm install --save @jaid/tsconfig-jaid@^2.0.0
+npm install --save-dev @jaid/tsconfig-jaid@^2.0.0
 ```
 
 
@@ -37,7 +37,29 @@ npm install --save @jaid/tsconfig-jaid@^2.0.0
 
 
 
+## Usage
 
+After installation, you can include the shared properties of `tsconfig-jaid` in your own TypeScript config file.
+
+### Node
+
+`YOURPROJECT/tsconfig.json`
+
+```json
+{
+  "extends": "tsconfig-jaid/base"
+}
+```
+
+### React
+
+`YOURPROJECT/tsconfig.json`
+
+```json
+{
+  "extends": "tsconfig-jaid/react"
+}
+```
 
 
 
