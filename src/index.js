@@ -1,10 +1,24 @@
 /** @module tsconfig-jaid */
 
 /**
- * Exports a Browserslist query
- * @type {string[]}
+ * Exports an extendable TypeScript config
+ * @type {object}
  */
-module.exports = [
-  "node >= 12",
-  "not dead",
-]
+module.exports = {
+  compilerOptions: {
+    allowJs: true,
+    checkJs: true,
+    baseUrl: ".",
+    outDir: "dist/typescript",
+    newLine: "lf",
+    declaration: true,
+    emitDeclarationOnly: true,
+    resolveJsonModule: true,
+    esModuleInterop: true,
+    paths: {
+      "lib/*": ["src/lib/*"],
+      "src/*": ["src/*"],
+      "root/*": ["./*"],
+    },
+  },
+}
