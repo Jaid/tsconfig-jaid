@@ -2,7 +2,6 @@
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
-    "baseUrl": ".",
     "outDir": "dist/typescript",
     "newLine": "lf",
     "declaration": true,
