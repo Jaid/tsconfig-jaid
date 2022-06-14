@@ -41,5 +41,6 @@
     "typescript",
     "typescript-config",
     "typescript-shareable-config"
-  ]
+  ],
+  "type": "module"
 }
