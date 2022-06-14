@@ -8,6 +8,10 @@
 **Extendable TypeScript config for my Node projects.**
 
 
+#### Pure ESM library
+
+:information_source: This package has only ESM exports. You should `import` it from MJS files or [read more here](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c).
+
 
 
 
@@ -23,13 +27,6 @@ npm install --save-dev tsconfig-jaid@^2.1.1
 
 ```bash
 yarn add --dev tsconfig-jaid@^2.1.1
-```
-
-<a href="https://github.com/jaid/tsconfig-jaid/packages"><img src="https://img.shields.io/badge/GitHub Packages-@jaid/tsconfig--jaid-24282e?style=flat-square&logo=github" alt="@jaid/tsconfig-jaid on GitHub Packages"/></a>  
-(if [configured properly](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages))
-
-```bash
-npm install --save-dev @jaid/tsconfig-jaid@^2.1.1
 ```
 
 
@@ -72,7 +69,11 @@ After installation, you can include the shared properties of `tsconfig-jaid` in 
 
 
 
+
 ## Development
+
+<details>
+<summary><b>Development hints for maintaining and improving tsconfig-jaid</b></summary>
 
 
 
@@ -91,7 +92,13 @@ Testing in production environment:
 npm run test
 ```
 
+</details>
 
 ## License
 [MIT License](https://raw.githubusercontent.com/jaid/tsconfig-jaid/master/license.txt)  
-Copyright © 2020, Jaid \<jaid.jsx@gmail.com> (https://github.com/jaid)
+Copyright © 2021, Jaid \<jaid.jsx@gmail.com> (https://github.com/jaid)
+
+<!---
+Readme generated with tldw v7.3.1
+https://github.com/Jaid/tldw
+-->
