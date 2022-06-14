@@ -1,14 +1,14 @@
 /** @module tsconfig-jaid */
 
-const baseConfig = require("./base.json")
-const reactConfig = require("./react.json")
+import baseConfig from "./base.json"
+import reactConfig from "./react.json"
 
 /**
  * Exports an extendable TypeScript config
  * @param {object} options
  * @return {object}
  */
-module.exports = options => {
+export default options => {
   if (options?.react) {
     return reactConfig
   }
