@@ -1,5 +1,4 @@
 {
-  "extends": "tsconfig-jaid/base",
   "include": [
     "src/**/*.js",
     "src/**/*.ts"
@@ -8,6 +7,25 @@
     "enable": true
   },
   "compilerOptions": {
-    "baseUrl": "."
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "../../dist/typescript",
+    "newLine": "lf",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "esModuleInterop": true,
+    "module": "es2022",
+    "paths": {
+      "lib/*": [
+        "src/lib/*"
+      ],
+      "src/*": [
+        "src/*"
+      ],
+      "root/*": [
+        "./*"
+      ]
+    }
   }
 }

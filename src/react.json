@@ -6,9 +6,9 @@
     "newLine": "lf",
     "declaration": true,
     "emitDeclarationOnly": true,
-    "resolveJsonModule": true,
     "esModuleInterop": true,
     "module": "es2022",
+    "moduleResolution": "NodeNext",
     "paths": {
       "lib/*": [
         "src/lib/*"
