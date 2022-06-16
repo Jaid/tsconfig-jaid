@@ -11,17 +11,6 @@
     "moduleResolution": "NodeNext",
     "lib": [
       "ESNext"
-    ],
-    "paths": {
-      "lib/*": [
-        "src/lib/*"
-      ],
-      "src/*": [
-        "src/*"
-      ],
-      "root/*": [
-        "./*"
-      ]
-    }
+    ]
   }
 }
