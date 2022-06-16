@@ -9,6 +9,9 @@
     "esModuleInterop": true,
     "module": "es2022",
     "moduleResolution": "NodeNext",
+    "lib": [
+      "ESNext"
+    ],
     "paths": {
       "lib/*": [
         "src/lib/*"

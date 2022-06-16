@@ -9,6 +9,11 @@
     "esModuleInterop": true,
     "module": "es2022",
     "moduleResolution": "NodeNext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "WebWorker"
+    ],
     "paths": {
       "lib/*": [
         "src/lib/*"
