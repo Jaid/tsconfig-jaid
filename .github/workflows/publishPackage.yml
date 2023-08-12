@@ -13,15 +13,15 @@ jobs:
         with:
           node-version: "16.1.0"
       - name: npm install
-        uses: jaid/action-npm-install@master
+        uses: jaid/action-npm-install@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Jest
-        uses: jaid/action-jest@master
+        uses: jaid/action-jest@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish
-        uses: jaid/action-publish@master
+        uses: jaid/action-publish@main
         with:
           githubToken: ${{ secrets.packagesToken }}
           npmPrepareScript: build:prod

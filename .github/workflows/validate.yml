@@ -13,17 +13,17 @@ jobs:
         with:
           node-version: "16.1.0"
       - name: npm install
-        uses: jaid/action-npm-install@master
+        uses: jaid/action-npm-install@main
       - name: Jest
-        uses: jaid/action-jest@master
+        uses: jaid/action-jest@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Sync Node Meta
-        uses: jaid/action-sync-node-meta@master
+        uses: jaid/action-sync-node-meta@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
       - name: Uptodater
-        uses: jaid/action-uptodater@master
+        uses: jaid/action-uptodater@main
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fix: "true"

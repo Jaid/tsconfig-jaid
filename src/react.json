@@ -1,19 +1,23 @@
 {
+  "ts-node": {
+    "transpileOnly": true,
+    "preferTsExts": true
+  },
   "compilerOptions": {
     "allowJs": true,
     "checkJs": true,
-    "outDir": "../../dist/typescript",
+    "outDir": "../../dist/ts",
     "newLine": "lf",
     "declaration": true,
-    "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
+    "target": "es2022",
     "lib": [
-      "ESNext",
-      "DOM",
-      "WebWorker"
+      "esnext",
+      "dom",
+      "webworker"
     ],
-    "jsx": "react"
+    "jsx": "react-jsx"
   }
 }
