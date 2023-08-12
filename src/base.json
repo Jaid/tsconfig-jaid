@@ -1,4 +1,10 @@
 {
+  "include": [
+    "../../*.js",
+    "../../*.ts",
+    "../../src/**/*.js",
+    "../../src/**/*.ts"
+  ],
   "ts-node": {
     "transpileOnly": true,
     "preferTsExts": true,
@@ -17,8 +23,5 @@
     "lib": [
       "esnext"
     ]
-  },
-  "include": [
-    "../../src/**/*.{js,ts}"
-  ]
+  }
 }

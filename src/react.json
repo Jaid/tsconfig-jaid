@@ -1,4 +1,10 @@
 {
+  "include": [
+    "../../*.js",
+    "../../*.ts",
+    "../../src/**/*.js",
+    "../../src/**/*.ts"
+  ],
   "ts-node": {
     "transpileOnly": true,
     "preferTsExts": true,
@@ -20,8 +26,5 @@
       "webworker"
     ],
     "jsx": "react-jsx"
-  },
-  "include": [
-    "../../src/**/*.{js,ts}"
-  ]
+  }
 }
