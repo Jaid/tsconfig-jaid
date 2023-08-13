@@ -2,11 +2,6 @@
   "include": [
     "../../src/**/*.ts"
   ],
-  "ts-node": {
-    "transpileOnly": true,
-    "preferTsExts": true,
-    "esm": true
-  },
   "compilerOptions": {
     "composite": true,
     "baseUrl": "../..",
@@ -32,5 +27,8 @@
       ]
     },
     "jsx": "react-jsx"
+  },
+  "typeAcquisition": {
+    "enable": true
   }
 }
