@@ -1,6 +1,6 @@
 {
   "webpackConfigJaid": "nodeLib",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
   "devDependencies": {
     "babel-jest": "^28.1.1",
