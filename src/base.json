@@ -15,6 +15,7 @@
     "moduleResolution": "nodenext",
     "target": "es2022",
     "allowImportingTsExtensions": true,
+    "strictNullChecks": true,
     "lib": [
       "esnext"
     ],
