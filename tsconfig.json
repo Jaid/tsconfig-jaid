@@ -16,6 +16,7 @@
     "esModuleInterop": true,
     "module": "es2022",
     "moduleResolution": "NodeNext",
+    "strictNullChecks": true,
     "lib": [
       "esnext"
     ],
