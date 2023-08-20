@@ -21,6 +21,9 @@
       "webworker"
     ],
     "paths": {
+      "root/*": [
+        "*"
+      ],
       "src/*": [
         "src/*"
       ],
