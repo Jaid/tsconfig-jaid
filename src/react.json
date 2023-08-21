@@ -1,7 +1,8 @@
 {
   "include": [
     "../../src/**/*.ts",
-    "../../test/**/*.ts"
+    "../../test/**/*.ts",
+    "../../etc/**/*.ts"
   ],
   "typeAcquisition": {
     "enable": true
