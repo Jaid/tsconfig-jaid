@@ -19,14 +19,14 @@
       "esnext"
     ],
     "paths": {
-      "root/*": [
-        "*"
+      "lib/*": [
+        "src/lib/*"
       ],
       "src/*": [
         "src/*"
       ],
-      "lib/*": [
-        "src/lib/*"
+      "root/*": [
+        "*"
       ]
     }
   }

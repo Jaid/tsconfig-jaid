@@ -21,17 +21,17 @@
       "webworker"
     ],
     "paths": {
-      "root/*": [
-        "*"
-      ],
-      "src/*": [
-        "src/*"
-      ],
       "lib/*": [
         "src/lib/*"
       ],
       "components/*": [
         "src/components/*"
+      ],
+      "src/*": [
+        "src/*"
+      ],
+      "root/*": [
+        "*"
       ]
     },
     "jsx": "react-jsx"
