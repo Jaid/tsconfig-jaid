@@ -1,7 +1,7 @@
 /** @module tsconfig-jaid */
 
-import baseConfig from "./base.json"
-import reactConfig from "./react.json"
+import baseConfig from './base.json'
+import reactConfig from './react.json'
 
 /**
  * Exports an extendable TypeScript config
