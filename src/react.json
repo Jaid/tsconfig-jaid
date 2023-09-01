@@ -27,7 +27,7 @@
         "src/lib/*"
       ],
       "components/*": [
-        "src/components/*"
+        "src/components/*/index.tsx"
       ],
       "etc/*": [
         "etc/*"
