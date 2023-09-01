@@ -12,6 +12,7 @@
     "composite": true,
     "baseUrl": "../..",
     "outDir": "../../dist/ts",
+    "skipLibCheck": true,
     "newLine": "lf",
     "module": "nodenext",
     "moduleResolution": "nodenext",
