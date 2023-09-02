@@ -1,24 +1,9 @@
 {
-  "include": [
-    "src/**/*.js",
-    "src/**/*.ts"
-  ],
-  "typeAcquisition": {
-    "enable": true
-  },
+  "extends": "tsconfig-jaid/base",
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
-    "outDir": "./dist/typescript",
-    "newLine": "lf",
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true,
-    "module": "es2022",
-    "moduleResolution": "NodeNext",
-    "strictNullChecks": true,
-    "lib": [
-      "esnext"
-    ],
+    "allowArbitraryExtensions": true,
+    "typeRoots": [
+      "./src/types"
+    ]
   }
 }
