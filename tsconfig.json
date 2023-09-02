@@ -1,9 +1,3 @@
 {
-  "extends": "tsconfig-jaid/base",
-  "compilerOptions": {
-    "allowArbitraryExtensions": true,
-    "typeRoots": [
-      "./src/types"
-    ]
-  }
+  "extends": "tsconfig-jaid/base"
 }
