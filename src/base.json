@@ -19,9 +19,6 @@
     "target": "es2022",
     "strictNullChecks": true,
     "allowArbitraryExtensions": true,
-    "typeRoots": [
-      "../../src/types"
-    ],
     "lib": [
       "esnext"
     ],
