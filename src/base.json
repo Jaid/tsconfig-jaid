@@ -11,7 +11,7 @@
   "compilerOptions": {
     "composite": true,
     "baseUrl": "../..",
-    "outDir": "../../dist/ts",
+    "outDir": "../../out/ts",
     "skipLibCheck": true,
     "newLine": "lf",
     "module": "nodenext",
