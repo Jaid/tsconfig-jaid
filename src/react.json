@@ -14,9 +14,8 @@
     "outDir": "../../out/ts",
     "skipLibCheck": true,
     "newLine": "lf",
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "target": "es2022",
+    "module": "esnext",
+    "target": "es2023",
     "strictNullChecks": true,
     "allowArbitraryExtensions": true,
     "lib": [
@@ -25,11 +24,11 @@
       "webworker"
     ],
     "paths": {
-      "lib/*": [
-        "src/lib/*"
-      ],
       "component/*": [
         "src/components/*/index.tsx"
+      ],
+      "lib/*": [
+        "src/lib/*"
       ],
       "etc/*": [
         "etc/*"
