@@ -1,5 +1,5 @@
 {
-  "version": "5.0.1",
+  "version": "5.1.0",
   "type": "module",
   "name": "tsconfig-jaid",
   "description": "Extendable TypeScript config for my Node projects.",
