@@ -16,7 +16,7 @@
     "newLine": "lf",
     "module": "nodenext",
     "moduleResolution": "nodenext",
-    "target": "es2023",
+    "target": "es2022",
     "strictNullChecks": true,
     "allowArbitraryExtensions": true,
     "lib": [
