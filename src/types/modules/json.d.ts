@@ -1,7 +1,7 @@
 type Content = {
-  typeAcquisition: import("typescript").TypeAcquisition
   compilerOptions: import("typescript").CompilerOptions
   include: string[]
+  typeAcquisition: import("typescript").TypeAcquisition
 }
 
 declare module '*.json' {
