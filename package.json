@@ -36,7 +36,8 @@
     "webpack-config-jaid": "^17.4.2"
   },
   "scripts": {
-    "build": "tsx src/build.ts && tsx src/build.ts node && tsx src/build.ts react"
+    "build": "tsx src/build.ts && tsx src/build.ts node && tsx src/build.ts react",
+    "prepareActionJest": "npm run build:prod"
   },
   "webpackConfigJaid": "nodeLib"
 }
