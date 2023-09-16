@@ -18,12 +18,12 @@ type MiddlewareFactory = (options?: Options) => MiddlewareFunction
 
 // @ts-expect-error
 const createInterpolateHandlebarsMiddleware: MiddlewareFactory = (options: Options = {}) => {
-  console.dir({options})
+  // console.dir({options})
   const middleware: AdvancedMiddlewareFunction = (args, yargs) => {
-    console.dir({
-      args,
-      yargs,
-    })
+    // console.dir({
+    //   args,
+    //   yargs,
+    // })
     const handlebarsContext = Object.assign({}, args, options.context)
     const argsOverride = mapObject(args, (key: string, value) => {
       if (key === `_` || key === `$0`) {
