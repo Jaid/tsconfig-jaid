@@ -14,11 +14,16 @@ const isHandlebarsTemplate = (value: string) => {
 }
 
 type AdvancedMiddlewareFunction = (args: ArgumentsCamelCase, yargs: Argv) => Record<string, unknown>
+type MiddlewareFactory = (options?: Options) => MiddlewareFunction
 
-export default (options: Options = {}): AdvancedMiddlewareFunction => {
-  console.dir(options)
-  return (args, yargs) => {
-    console.dir(yargs)
+// @ts-expect-error
+const createInterpolateHandlebarsMiddleware: MiddlewareFactory = (options: Options = {}) => {
+  console.dir({options})
+  const middleware: AdvancedMiddlewareFunction = (args, yargs) => {
+    console.dir({
+      args,
+      yargs,
+    })
     const handlebarsContext = Object.assign({}, args, options.context)
     const argsOverride = mapObject(args, (key: string, value) => {
       if (key === `_` || key === `$0`) {
@@ -45,4 +50,9 @@ export default (options: Options = {}): AdvancedMiddlewareFunction => {
     console.dir(argsOverride)
     return argsOverride
   }
+  return middleware
 }
+const interpolateHandlebarsMiddleware = createInterpolateHandlebarsMiddleware()
+
+export default interpolateHandlebarsMiddleware
+export {createInterpolateHandlebarsMiddleware, interpolateHandlebarsMiddleware}

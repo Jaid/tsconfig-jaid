@@ -1,10 +1,11 @@
 import type {OverrideProperties} from 'type-fest'
-import type {CompilerOptions, ModuleKind, ModuleResolutionKind, NewLineKind, ScriptTarget, TypeAcquisition} from 'typescript'
+import type {CompilerOptions, JsxEmit, ModuleKind, ModuleResolutionKind, NewLineKind, ScriptTarget, TypeAcquisition} from 'typescript'
 
 import ensureEnd from 'ensure-end'
 
 export type Tsconfig = Partial<{
   compilerOptions: OverrideProperties<CompilerOptions, Partial<{
+    jsx: keyof typeof JsxEmit
     module: keyof typeof ModuleKind
     moduleResolution: keyof typeof ModuleResolutionKind
     newLine: keyof typeof NewLineKind
@@ -45,7 +46,7 @@ export default class {
     }
     this.tsconfig.compilerOptions.lib.push(name)
   }
-  addShortcut(name: string, target: ShortcutTarget) {
+  addShortcut(name: string, target: ShortcutTarget, highPriority = true) {
     if (!this.tsconfig.compilerOptions) {
       this.tsconfig.compilerOptions = {}
     }
@@ -53,7 +54,15 @@ export default class {
       this.tsconfig.compilerOptions.paths = {}
     }
     const virtualPath = ensureEnd.default(`~/${name}`, `/*`)
-    this.tsconfig.compilerOptions.paths[virtualPath] = this.resolveTarget(name, target)
+    const resolvedTarget = this.resolveTarget(name, target)
+    if (highPriority) {
+      this.tsconfig.compilerOptions.paths = {
+        [virtualPath]: resolvedTarget,
+        ...this.tsconfig.compilerOptions.paths,
+      }
+    } else {
+      this.tsconfig.compilerOptions.paths[virtualPath] = resolvedTarget
+    }
   }
   getPrefix(): string | undefined {
     if (this.tsconfig.compilerOptions?.baseUrl) {

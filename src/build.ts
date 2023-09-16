@@ -1,11 +1,14 @@
-import type {ShortcutTarget} from './Config.js'
+import type {ShortcutTarget} from './lib/Config.js'
+import type Config from './lib/Config.js'
 import type {ArgumentsCamelCase, Argv, CommandBuilder} from 'yargs'
 
 import path from 'node:path'
 
-import Config from './Config.js'
 import fs from 'fs-extra'
-import yargsMiddlewareInterpolateHandlebars from 'lib/yargsMiddlewareInterpolateHandlebars.js'
+import {GenericConfig} from 'lib/GenericConfig.js'
+import interpolateHandlebarsMiddleware from 'lib/interpolateHandlebarsMiddleware.js'
+import {NodeConfig} from 'lib/NodeConfig.js'
+import {ReactConfig} from 'lib/ReactConfig.js'
 import yargs from 'yargs'
 import {hideBin} from 'yargs/helpers'
 
@@ -14,43 +17,14 @@ export type Args = (typeof builder) extends CommandBuilder<any, infer U> ? Argum
 
 const handler = async (args: Args) => {
   console.dir(args)
-  const prefix = `../..`
-  const folders = [
-    `src`,
-    `test`,
-    `x`,
-    `etc`,
-  ]
-  const shortcuts: Record<string, ShortcutTarget> = {
-    lib: `src/lib`,
-    root: ``,
-    src: true,
+  const configMapper = {
+    generic: GenericConfig,
+    node: NodeConfig,
+    react: ReactConfig,
   }
-  const config = new Config({
-    compilerOptions: {
-      allowArbitraryExtensions: true,
-      baseUrl: prefix,
-      composite: true,
-      module: `nodenext`,
-      moduleResolution: `node`,
-      newLine: `lf`,
-      skipLibCheck: true,
-      strictNullChecks: true,
-      target: `es2022`,
-    },
-    typeAcquisition: {
-      enable: true,
-    },
-  })
-  config.setOutDir(`out/ts`)
-  config.addInclude(``, false)
-  for (const folder of folders) {
-    config.addInclude(folder)
-  }
-  for (const [name, target] of Object.entries(shortcuts)) {
-    config.addShortcut(name, target)
-  }
-  config.addLib(`esnext`)
+  const ModeConfig = configMapper[<keyof typeof configMapper> args.mode]
+  const config = new ModeConfig
+  console.dir(config.tsconfig, {depth: 3})
   await fs.outputJson(path.join(args.outputFolder, `tsconfig.json`), config.tsconfig)
 }
 const builder = (argv: Argv) => {
@@ -81,5 +55,5 @@ await yargs(hideBin(process.argv))
     'strip-aliased': true,
     'strip-dashed': true,
   })
-  .middleware(yargsMiddlewareInterpolateHandlebars())
+  .middleware(interpolateHandlebarsMiddleware)
   .parse()
