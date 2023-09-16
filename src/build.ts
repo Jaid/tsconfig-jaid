@@ -1,5 +1,4 @@
-import type {ShortcutTarget} from './lib/Config.js'
-import type Config from './lib/Config.js'
+import type {PackageJson} from 'type-fest'
 import type {ArgumentsCamelCase, Argv, CommandBuilder} from 'yargs'
 
 import path from 'node:path'
@@ -9,6 +8,7 @@ import {GenericConfig} from 'lib/GenericConfig.js'
 import interpolateHandlebarsMiddleware from 'lib/interpolateHandlebarsMiddleware.js'
 import {NodeConfig} from 'lib/NodeConfig.js'
 import {ReactConfig} from 'lib/ReactConfig.js'
+import * as lodash from 'lodash-es'
 import yargs from 'yargs'
 import {hideBin} from 'yargs/helpers'
 
@@ -22,10 +22,17 @@ const handler = async (args: Args) => {
     node: NodeConfig,
     react: ReactConfig,
   }
-  const ModeConfig = configMapper[<keyof typeof configMapper> args.mode]
-  const config = new ModeConfig
+  const config = new configMapper[<keyof typeof configMapper> args.mode]
   console.dir(config.tsconfig, {depth: 3})
-  await fs.outputJson(path.join(args.outputFolder, `tsconfig.json`), config.tsconfig)
+  const parentPkg = <PackageJson> await fs.readJson(`package.json`)
+  const pkg = {
+    keywords: parentPkg.keywords,
+    main: `./base.json`,
+    name: args.mode === `generic` ? parentPkg.name : `${parentPkg.name}-${args.mode}`,
+    ...lodash.pick(parentPkg, `version`, `dependencies`, `repository`, `funding`, `author`, `homepage`),
+  }
+  await fs.outputJson(path.join(args.outputFolder, `base.json`), config.tsconfig)
+  await fs.outputJson(path.join(args.outputFolder, `package.json`), pkg)
 }
 const builder = (argv: Argv) => {
   return argv.options({
@@ -38,7 +45,7 @@ const builder = (argv: Argv) => {
       default: `generic`,
     },
     outputFolder: {
-      default: `dist/package/{{mode}}`,
+      default: `out/package/{{mode}}`,
       type: `string`,
     },
   })
