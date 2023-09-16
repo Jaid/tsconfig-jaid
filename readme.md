@@ -83,14 +83,6 @@ git clone git@github.com:jaid/tsconfig-jaid.git
 cd tsconfig-jaid
 npm install
 ```
-Testing:
-```bash
-npm run test:dev
-```
-Testing in production environment:
-```bash
-npm run test
-```
 
 </details>
 
