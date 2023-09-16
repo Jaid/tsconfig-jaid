@@ -37,8 +37,8 @@
     "yargs": "^17.7.2"
   },
   "scripts": {
-    "build": "fse-cli emptyDir out/package && tsx src/build.ts && tsx src/build.ts node && tsx src/build.ts react",
-    "release": "npm run build && find out/package -mindepth 1 -maxdepth 1 -exec npm publish {} \\;"
+    "build": "fse-cli emptyDir out/package && tsx x/build.ts && tsx x/build.ts node && tsx x/build.ts react",
+    "release": "npm run build && find out/package -name package.json -execdir npm publish \\;"
   },
   "webpackConfigJaid": "nodeLib"
 }
