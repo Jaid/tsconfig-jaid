@@ -38,7 +38,8 @@
   },
   "scripts": {
     "build": "fse-cli emptyDir out/package && tsx src/build.ts && tsx src/build.ts node && tsx src/build.ts react",
-    "release": "npm run build && find out/package -mindepth 1 -maxdepth 1 -exec npm publish {} \\;"
+    "release": "npm run build && find out/package -mindepth 1 -maxdepth 1 -exec npm publish {} \\;",
+    "prepareActionJest": "npm run build:prod"
   },
   "webpackConfigJaid": "nodeLib"
 }
