@@ -25,6 +25,7 @@ yarn-error.log
 # Generated or temporary content
 dist
 temp
+out
 
 # IDEs
 /debug.log
