@@ -38,7 +38,8 @@
   },
   "scripts": {
     "build": "npx @atao60/fse-cli emptyDir out/package && tsx src/build.ts && tsx src/build.ts node && tsx src/build.ts react",
-    "release": "npm run build && npm publish out/package/*"
+    "release": "npm run build && npm publish out/package/*",
+    "prepareActionJest": "npm run build:prod"
   },
   "webpackConfigJaid": "nodeLib"
 }
