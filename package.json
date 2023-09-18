@@ -31,7 +31,7 @@
     "map-obj": "^5.0.2",
     "nan": "^2.18.0",
     "rimraf": "^5.0.1",
-    "tsconfig-jaid": "^6.0.0",
+    "tsconfig-jaid-node": "^6.0.0",
     "webpack": "^5.88.2",
     "webpack-config-jaid": "^17.4.2",
     "yargs": "^17.7.2"
