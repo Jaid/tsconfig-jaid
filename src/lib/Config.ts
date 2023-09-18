@@ -1,24 +1,11 @@
-import type {OverrideProperties} from 'type-fest'
-import type {CompilerOptions, JsxEmit, ModuleKind, ModuleResolutionKind, NewLineKind, ScriptTarget, TypeAcquisition} from 'typescript'
+import type {TsConfigJson} from 'type-fest'
 
 import ensureEnd from 'ensure-end'
-
-export type Tsconfig = Partial<{
-  compilerOptions: OverrideProperties<CompilerOptions, Partial<{
-    jsx: keyof typeof JsxEmit
-    module: keyof typeof ModuleKind
-    moduleResolution: keyof typeof ModuleResolutionKind
-    newLine: keyof typeof NewLineKind
-    target: keyof typeof ScriptTarget
-  }>>
-  include: string[]
-  typeAcquisition: TypeAcquisition
-}>
 
 export type ShortcutTarget = string | string[] | true
 
 export default class {
-  tsconfig: Tsconfig = {}
+  tsconfig: TsConfigJson = {}
   constructor(baseConfig) {
     Object.assign(this.tsconfig, baseConfig)
   }

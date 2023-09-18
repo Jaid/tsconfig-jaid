@@ -27,6 +27,8 @@
     "babel-preset-jaid": "^17.0.0",
     "eslint": "^8.49.0",
     "eslint-config-jaid": "^8.11.0",
+    "execa": "^8.0.1",
+    "fs-extra": "^11.1.1",
     "jest": "^29.7.0",
     "map-obj": "^5.0.2",
     "nan": "^2.18.0",
@@ -38,7 +40,8 @@
   },
   "scripts": {
     "build": "fse-cli emptyDir out/package && tsx x/build.ts && tsx x/build.ts node && tsx x/build.ts react",
-    "release": "npm run build && find out/package -name package.json -execdir npm publish \\;"
+    "release": "npm run build && find out/package -name package.json -execdir npm publish \\;",
+    "test": "node --loader tsx --test test/index.ts"
   },
   "webpackConfigJaid": "nodeLib"
 }

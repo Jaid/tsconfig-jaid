@@ -1,4 +1,5 @@
-import type {ShortcutTarget} from '~/lib/Config.js'
+import type {ShortcutTarget} from './Config'
+import type {TsConfigJson} from 'type-fest'
 
 import Config from '~/lib/Config.js'
 
@@ -9,25 +10,19 @@ const folders = [
   `x`,
   `etc`,
 ]
-// const shortcuts = new Map<string, ShortcutTarget>({
-//   etc: true,
-//   lib: `src/lib/*`,
-//   root: `*`,
-//   src: true,
-// })
 const shortcuts = new Map<string, ShortcutTarget>([
   [`root`, `*`],
   [`etc`, true],
   [`src`, true],
   [`lib`, `src/lib/*`],
 ])
-const baseConfig = {
+const baseConfig: TsConfigJson = {
   compilerOptions: {
     allowArbitraryExtensions: true,
     baseUrl: prefix,
     composite: true,
     module: `nodenext`,
-    moduleResolution: `node`,
+    moduleResolution: `nodenext`,
     newLine: `lf`,
     skipLibCheck: true,
     strictNullChecks: true,

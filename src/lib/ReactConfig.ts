@@ -8,7 +8,7 @@ export class ReactConfig extends GenericConfig {
     if (!this.tsconfig.compilerOptions) {
       this.tsconfig.compilerOptions = {}
     }
-    this.tsconfig.compilerOptions.jsx = `ReactJSX`
+    this.tsconfig.compilerOptions.jsx = `react-jsx`
     this.addShortcut(`component`, [
       `src/components/*/index.tsx`,
       `src/components/*/index.ts`,
