@@ -1,6 +1,6 @@
-import type {ShortcutTarget} from 'lib/Config.js'
+import type {ShortcutTarget} from '~/lib/Config.js'
 
-import Config from 'lib/Config.js'
+import Config from '~/lib/Config.js'
 
 const prefix = `../..`
 const folders = [

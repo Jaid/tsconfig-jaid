@@ -4,13 +4,14 @@ import type {ArgumentsCamelCase, Argv, CommandBuilder} from 'yargs'
 import path from 'node:path'
 
 import fs from 'fs-extra'
-import {GenericConfig} from 'lib/GenericConfig.js'
-import interpolateHandlebarsMiddleware from 'lib/interpolateHandlebarsMiddleware.js'
-import {NodeConfig} from 'lib/NodeConfig.js'
-import {ReactConfig} from 'lib/ReactConfig.js'
 import * as lodash from 'lodash-es'
 import yargs from 'yargs'
 import {hideBin} from 'yargs/helpers'
+
+import {GenericConfig} from '~/lib/GenericConfig.js'
+import interpolateHandlebarsMiddleware from '~/lib/interpolateHandlebarsMiddleware.js'
+import {NodeConfig} from '~/lib/NodeConfig.js'
+import {ReactConfig} from '~/lib/ReactConfig.js'
 
 // Don’t fully understand this, taken from here: https://github.com/zwade/hypatia/blob/a4f2f5785c146b4cb4ebff44da609a6500c53887/backend/src/start.ts#L47
 export type Args = (typeof builder) extends CommandBuilder<any, infer U> ? ArgumentsCamelCase<U> : never
@@ -25,10 +26,10 @@ const handler = async (args: Args) => {
   const config = new configMapper[<keyof typeof configMapper> args.mode]
   console.dir(config.tsconfig, {depth: 3})
   const parentPkg = <PackageJson> await fs.readJson(`package.json`)
-  const pkg = {
-    keywords: parentPkg.keywords,
-    main: `./base.json`,
+  const pkg = <PackageJson> {
     name: args.mode === `generic` ? parentPkg.name : `${parentPkg.name}-${args.mode}`,
+    exports: `./base.json`,
+    keywords: parentPkg.keywords,
     ...lodash.pick(parentPkg, `version`, `dependencies`, `repository`, `funding`, `author`, `homepage`),
   }
   await fs.outputJson(path.join(args.outputFolder, `base.json`), config.tsconfig)
