@@ -37,9 +37,9 @@ for (const mode of modes) {
       })
       return execaResult
     }
-    const file = path.join(rootFolder, `out`, `test.ts`)
+    const file = path.join(rootFolder, `out`, `test-${mode}.ts`)
     await using tempFile = new TempFile(file)
-    await tempFile.write(`type Choice = 'foo' | 'bar'\nconst choice: Choice = 'bar'`)
+    await tempFile.write(`type Choice = 'foo' | 'bar'; const choice: Choice = 'bar'`)
     const showConfigResult = await runTsc([`--showConfig`])
     assert.strictEqual(showConfigResult.exitCode, 0)
     const finalConfig = <TsConfigJson> JSON.parse(showConfigResult.stdout)
