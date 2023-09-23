@@ -41,7 +41,8 @@
   "scripts": {
     "build": "fse-cli emptyDir out/package && tsx x/build.ts && tsx x/build.ts node && tsx x/build.ts react",
     "release": "npm run build && find out/package -name package.json -execdir npm publish \\;",
-    "test": "node --loader tsx --test test/index.ts"
+    "test": "node --loader tsx --test test/index.ts",
+    "prepareActionJest": "npm run build:prod"
   },
   "webpackConfigJaid": "nodeLib"
 }
