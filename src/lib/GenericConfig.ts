@@ -6,6 +6,7 @@ import Config from '~/lib/Config.js'
 const prefix = `../..`
 const folders = [
   `src`,
+  `lib`,
   `test`,
   `x`,
   `etc`,
