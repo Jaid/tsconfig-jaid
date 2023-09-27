@@ -13,8 +13,8 @@ const folders = [
 const shortcuts = new Map<string, ShortcutTarget>([
   [`root`, `*`],
   [`etc`, true],
+  [`lib`, true],
   [`src`, true],
-  [`lib`, `src/lib/*`],
 ])
 const baseConfig: TsConfigJson = {
   compilerOptions: {
