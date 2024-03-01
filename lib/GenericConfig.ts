@@ -28,6 +28,9 @@ const baseConfig: TsConfigJson = {
     skipLibCheck: true,
     strictNullChecks: true,
     target: `es2022`,
+    experimentalDecorators: true,
+    inlineSourceMap: true,
+    inlineSources: true,
   },
   typeAcquisition: {
     enable: true,
