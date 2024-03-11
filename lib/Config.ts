@@ -2,7 +2,7 @@ import type {TsConfigJson} from 'type-fest'
 
 import ensureEnd from 'ensure-end'
 
-export type ShortcutTarget = string | string[] | true
+export type ShortcutTarget = Array<string> | string | true
 
 export default class {
   tsconfig: TsConfigJson = {}
@@ -40,7 +40,7 @@ export default class {
     if (!this.tsconfig.compilerOptions.paths) {
       this.tsconfig.compilerOptions.paths = {}
     }
-    const virtualPath = ensureEnd.default(`~/${name}`, `/*`)
+    const virtualPath = ensureEnd.default(name, `/*`) as string
     const resolvedTarget = this.resolveTarget(name, target)
     if (highPriority) {
       this.tsconfig.compilerOptions.paths = {
@@ -56,7 +56,7 @@ export default class {
       return ensureEnd.default(this.tsconfig.compilerOptions.baseUrl, `/`)
     }
   }
-  resolveTarget(name: string, target: ShortcutTarget): string[] {
+  resolveTarget(name: string, target: ShortcutTarget): Array<string> {
     if (Array.isArray(target)) {
       return target
     }

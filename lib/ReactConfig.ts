@@ -9,11 +9,14 @@ export class ReactConfig extends GenericConfig {
       this.tsconfig.compilerOptions = {}
     }
     this.tsconfig.compilerOptions.jsx = `react-jsx`
-    this.addShortcut(`component`, [
-      `src/components/*/index.tsx`,
-      `src/components/*/index.ts`,
-      `src/components/*.tsx`,
-      `src/components/*.ts`,
-    ])
+    const componentResolves = [`~/component`, `component`]
+    for (const resolve of componentResolves) {
+      this.addShortcut(resolve, [
+        `src/components/*/index.tsx`,
+        `src/components/*/index.ts`,
+        `src/components/*.tsx`,
+        `src/components/*.ts`,
+      ])
+    }
   }
 }
