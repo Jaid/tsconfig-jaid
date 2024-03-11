@@ -13,9 +13,9 @@ const folders = [
 ]
 const shortcuts = new Map<string, ShortcutTarget>([
   [`~`, `*`],
+  [`src`, `src/*`],
   [`etc`, [`etc/*`, `src/etc/*`]],
   [`lib`, [`lib/*`, `src/lib/*`]],
-  [`src`, `src/*`],
   [`media`, `media/*`],
 ])
 const baseConfig: TsConfigJson = {
