@@ -1,7 +1,7 @@
 import type {ShortcutTarget} from './Config.js'
 import type {TsConfigJson} from 'type-fest'
 
-import Config from '~/lib/Config.js'
+import Config from 'lib/Config.js'
 
 const prefix = `../..`
 const folders = [

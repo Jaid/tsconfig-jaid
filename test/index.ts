@@ -1,7 +1,7 @@
 import type {TsConfigJson} from 'type-fest'
 
 import assert from 'node:assert'
-import path from 'node:path'
+import * as path from 'forward-slash-path'
 import {it} from 'node:test'
 
 import {execa} from 'execa'
