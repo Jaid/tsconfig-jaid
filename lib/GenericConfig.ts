@@ -10,6 +10,7 @@ const folders = [
   `test`,
   `x`,
   `etc`,
+  `private`,
 ]
 const shortcuts = new Map<string, ShortcutTarget>([
   [`~`, `*`],
@@ -21,6 +22,7 @@ const shortcuts = new Map<string, ShortcutTarget>([
 const baseConfig: TsConfigJson = {
   compilerOptions: {
     allowArbitraryExtensions: true,
+    allowImportingTsExtensions: true,
     baseUrl: prefix,
     composite: true,
     module: `esnext`,
@@ -29,8 +31,9 @@ const baseConfig: TsConfigJson = {
     skipLibCheck: true,
     strictNullChecks: true,
     allowJs: true,
-    target: `es2022`,
+    target: `esnext`,
     experimentalDecorators: true,
+    noEmit: true,
     inlineSourceMap: true,
     // inlineSources: true,
   },
