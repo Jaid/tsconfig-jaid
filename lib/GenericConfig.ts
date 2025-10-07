@@ -26,6 +26,8 @@ const baseConfig: TsConfigJson = {
     baseUrl: prefix,
     composite: true,
     module: `esnext`,
+    moduleDetection: `force`,
+    verbatimModuleSyntax: true,
     moduleResolution: `bundler`,
     newLine: `lf`,
     skipLibCheck: true,
