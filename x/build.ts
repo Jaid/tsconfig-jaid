@@ -46,7 +46,7 @@ const builder = (argv: Argv) => {
       default: `generic`,
     },
     outputFolder: {
-      default: `out/package/{{mode}}`,
+      default: `dist/package/production/{{mode}}`,
       type: `string`,
     },
   })

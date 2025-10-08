@@ -40,7 +40,7 @@
   },
   "scripts": {
     "build": "fse-cli emptyDir out/package && tsx x/build.ts && tsx x/build.ts node && tsx x/build.ts react",
-    "release": "npm run build && find out/package -name package.json -execdir npm publish \\;",
+    "release": "fd --unrestricted --full-path 'dist[\\\\/]package[\\\\/][\\w-]+[\\\\/]production[\\\\/]package.json' --exec bun publish --cwd {//}",
     "test": "node --import tsx --test test/index.ts"
   },
   "webpackConfigJaid": "nodeLib"
