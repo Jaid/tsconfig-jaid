@@ -39,7 +39,7 @@
     "yargs": "^18.0.0"
   },
   "scripts": {
-    "build": "fse-cli emptyDir out/package && tsx x/build.ts && tsx x/build.ts node && tsx x/build.ts react",
+    "build": "fse emptyDir out/package && bun x/build.ts && bun x/build.ts node && bun x/build.ts react",
     "release": "fd --unrestricted --full-path 'dist[\\\\/]package[\\\\/][\\w-]+[\\\\/]production[\\\\/]package.json' --exec bun publish --cwd {//}",
     "test": "node --import tsx --test test/index.ts"
   },
