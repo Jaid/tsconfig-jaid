@@ -22,7 +22,7 @@ export default class {
     if (include.length > 0) {
       suffix = `/${suffix}`
     }
-    this.tsconfig.include.push(ensureEnd.default(this.resolveWithPrefix(include), suffix))
+    this.tsconfig.include.push(ensureEnd(this.resolveWithPrefix(include), suffix))
   }
   addLib(name: string) {
     if (!this.tsconfig.compilerOptions) {
@@ -40,7 +40,7 @@ export default class {
     if (!this.tsconfig.compilerOptions.paths) {
       this.tsconfig.compilerOptions.paths = {}
     }
-    const virtualPath = ensureEnd.default(name, `/*`) as string
+    const virtualPath = ensureEnd(name, `/*`) as string
     const resolvedTarget = this.resolveTarget(name, target)
     if (highPriority) {
       this.tsconfig.compilerOptions.paths = {
@@ -53,7 +53,7 @@ export default class {
   }
   getPrefix(): string | undefined {
     if (this.tsconfig.compilerOptions?.baseUrl) {
-      return ensureEnd.default(this.tsconfig.compilerOptions.baseUrl, `/`)
+      return ensureEnd(this.tsconfig.compilerOptions.baseUrl, `/`)
     }
   }
   resolveTarget(name: string, target: ShortcutTarget): Array<string> {
