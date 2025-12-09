@@ -13,7 +13,7 @@ const folders = [
   `private`,
 ]
 const shortcuts = new Map<string, ShortcutTarget>([
-  [`~`, `*`],
+  [`root`, `*`],
   [`src`, `src/*`],
   [`etc`, [`etc/*`, `src/etc/*`]],
   [`lib`, [`lib/*`, `src/lib/*`]],
