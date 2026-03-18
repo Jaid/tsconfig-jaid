@@ -8,7 +8,7 @@ const folders = [
   `src`,
   `lib`,
   `test`,
-  `x`,
+  `scripts`,
   `etc`,
 ]
 const shortcuts = new Map<string, ShortcutTarget>([
