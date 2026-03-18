@@ -2,6 +2,7 @@
   "version": "11.0.0",
   "type": "module",
   "name": "tsconfig-jaid",
+  "license": "MIT",
   "description": "Extendable TypeScript config for my Node projects.",
   "keywords": [
     "config",
