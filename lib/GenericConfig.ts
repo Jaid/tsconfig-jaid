@@ -10,7 +10,6 @@ const folders = [
   `test`,
   `x`,
   `etc`,
-  `private`,
 ]
 const shortcuts = new Map<string, ShortcutTarget>([
   [`root`, `*`],
