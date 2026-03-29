@@ -19,10 +19,6 @@
     "type": "git",
     "url": "https://github.com/jaid/tsconfig-jaid"
   },
-  "dependencies": {
-    "type-fest": "^5.5.0",
-    "typescript": "^6.0.2"
-  },
   "devDependencies": {
     "babel-jest": "^30.3.0",
     "babel-preset-jaid": "^17.0.0",
@@ -37,7 +33,9 @@
     "tsconfig-jaid-node": "^10.0.0",
     "webpack": "^5.105.4",
     "webpack-config-jaid": "^17.4.2",
-    "yargs": "^18.0.0"
+    "yargs": "^18.0.0",
+    "type-fest": "^5.5.0",
+    "typescript": "^6.0.2"
   },
   "scripts": {
     "build": "fse emptyDir out/package && bun x/build.ts && bun x/build.ts node && bun x/build.ts react",
