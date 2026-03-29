@@ -4,10 +4,6 @@
   "workspaces": {
     "": {
       "name": "tsconfig-jaid",
-      "dependencies": {
-        "type-fest": "latest",
-        "typescript": "latest",
-      },
       "devDependencies": {
         "babel-jest": "latest",
         "babel-preset-jaid": "latest",
@@ -20,6 +16,8 @@
         "nan": "latest",
         "rimraf": "latest",
         "tsconfig-jaid-node": "latest",
+        "type-fest": "latest",
+        "typescript": "latest",
         "webpack": "latest",
         "webpack-config-jaid": "latest",
         "yargs": "latest",
