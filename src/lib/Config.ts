@@ -6,7 +6,7 @@ export type ShortcutTarget = Array<string> | string | true
 
 export default class {
   tsconfig: TsConfigJson = {}
-  constructor(baseConfig) {
+  constructor(baseConfig: TsConfigJson) {
     Object.assign(this.tsconfig, baseConfig)
   }
   addInclude(include: string, recursive = true) {
@@ -24,7 +24,7 @@ export default class {
     }
     this.tsconfig.include.push(ensureEnd(this.resolveWithPrefix(include), suffix))
   }
-  addLib(name: string) {
+  addLib(name: TsConfigJson.CompilerOptions.Lib) {
     if (!this.tsconfig.compilerOptions) {
       this.tsconfig.compilerOptions = {}
     }

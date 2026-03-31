@@ -19,7 +19,14 @@
     "type": "git",
     "url": "https://github.com/jaid/tsconfig-jaid"
   },
+  "imports": {
+    "#/*": "./*",
+    "#root/*": "./*",
+    "#src/*": "./src/*",
+    "#lib/*": "./src/lib/*"
+  },
   "devDependencies": {
+    "@types/bun": "^1.3.11",
     "babel-jest": "^30.3.0",
     "babel-preset-jaid": "^17.0.0",
     "eslint": "^10.1.0",
@@ -38,9 +45,9 @@
     "typescript": "^6.0.2"
   },
   "scripts": {
-    "build": "fse emptyDir out/package && bun x/build.ts && bun x/build.ts node && bun x/build.ts react",
+    "build": "fse emptyDir out/package && bun scripts/build.ts && bun scripts/build.ts node && bun scripts/build.ts react",
     "release": "fd --unrestricted --full-path 'dist[\\\\/]package[\\\\/][\\w-]+[\\\\/]production[\\\\/]package.json' --exec bun publish --cwd {//}",
-    "test": "node --import tsx --test test/index.ts"
+    "test": "bun test --max-concurrency 1 ./test"
   },
   "webpackConfigJaid": "nodeLib"
 }

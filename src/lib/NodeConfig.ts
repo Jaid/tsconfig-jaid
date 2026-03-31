@@ -1,4 +1,4 @@
-import {GenericConfig} from './GenericConfig.js'
+import {GenericConfig} from '#src/lib/GenericConfig.ts'
 
 export class NodeConfig extends GenericConfig {
   constructor() {

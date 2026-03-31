@@ -8,10 +8,10 @@ import * as lodash from 'lodash-es'
 import yargs from 'yargs'
 import {hideBin} from 'yargs/helpers'
 
-import {GenericConfig} from 'lib/GenericConfig.js'
-import interpolateHandlebarsMiddleware from 'lib/interpolateHandlebarsMiddleware.js'
-import {NodeConfig} from 'lib/NodeConfig.js'
-import {ReactConfig} from 'lib/ReactConfig.js'
+import {GenericConfig} from '#src/lib/GenericConfig.ts'
+import interpolateHandlebarsMiddleware from '#src/lib/interpolateHandlebarsMiddleware.ts'
+import {NodeConfig} from '#src/lib/NodeConfig.ts'
+import {ReactConfig} from '#src/lib/ReactConfig.ts'
 
 // Don’t fully understand this, taken from here: https://github.com/zwade/hypatia/blob/a4f2f5785c146b4cb4ebff44da609a6500c53887/backend/src/start.ts#L47
 export type Args = (typeof builder) extends CommandBuilder<any, infer U> ? ArgumentsCamelCase<U> : never
