@@ -45,7 +45,7 @@
     "typescript": "^6.0.2"
   },
   "scripts": {
-    "build": "fse emptyDir out/package && bun scripts/build.ts && bun scripts/build.ts node && bun scripts/build.ts react",
+    "build": "fse emptyDir out/package && bun scripts/build.ts && bun scripts/build.ts node && bun scripts/build.ts bun && bun scripts/build.ts react",
     "release": "fd --unrestricted --full-path 'dist[\\\\/]package[\\\\/][\\w-]+[\\\\/]production[\\\\/]package.json' --exec bun publish --cwd {//}",
     "test": "bun test --max-concurrency 1 ./test"
   },

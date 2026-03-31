@@ -12,6 +12,7 @@ const configDirPlaceholder = '${configDir}'
 const modes = [
   'generic',
   'node',
+  'bun',
   'react',
 ] as const
 const expectedIncludes = [
@@ -54,6 +55,14 @@ const modeExpectations: Record<Mode, ModeExpectation> = {
     jsx: 'react',
     lib: ['esnext'],
     types: ['node'],
+  },
+  bun: {
+    packageName: 'tsconfig-jaid-bun',
+    module: 'nodenext',
+    moduleResolution: 'nodenext',
+    jsx: 'react',
+    lib: ['esnext'],
+    types: ['bun-types'],
   },
   react: {
     packageName: 'tsconfig-jaid-react',
@@ -114,7 +123,7 @@ const createModeFixture = async (mode: Mode) => {
     fs.outputFile(path.join(tempRoot, 'src/feature.ts'), `export const srcValue = 2\n`),
     fs.outputFile(path.join(tempRoot, 'src/lib/helper.ts'), `export const libValue = 3\n`),
   ])
-  await fs.writeFile(path.join(tempRoot, 'sample.ts'), [
+  const sampleLines = [
     `import {rootValue} from '#root/util.ts'`,
     `import {srcValue} from '#src/feature.ts'`,
     `import {libValue} from '#lib/helper.ts'`,
@@ -122,8 +131,15 @@ const createModeFixture = async (mode: Mode) => {
     `type Choice = 'foo' | 'bar'`,
     `const total = rootValue + srcValue + libValue`,
     `export const choice: Choice = total > 0 ? 'bar' : 'foo'`,
-    '',
-  ].join('\n'))
+  ]
+  if (mode === 'node') {
+    sampleLines.push(`export const runtimeVersion = process.version`)
+  }
+  if (mode === 'bun') {
+    sampleLines.push(`export const runtimeVersion = Bun.version`)
+  }
+  sampleLines.push('')
+  await fs.writeFile(path.join(tempRoot, 'sample.ts'), sampleLines.join('\n'))
   const [baseConfig, builtPackage] = await Promise.all([
     Bun.file(path.join(outputFolder, 'base.json')).json() as Promise<TsConfigJson>,
     Bun.file(path.join(outputFolder, 'package.json')).json() as Promise<PackageJson>,

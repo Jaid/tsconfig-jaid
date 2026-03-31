@@ -8,6 +8,7 @@ import * as lodash from 'lodash-es'
 import yargs from 'yargs'
 import {hideBin} from 'yargs/helpers'
 
+import {BunConfig} from '#src/lib/BunConfig.ts'
 import {GenericConfig} from '#src/lib/GenericConfig.ts'
 import interpolateHandlebarsMiddleware from '#src/lib/interpolateHandlebarsMiddleware.ts'
 import {NodeConfig} from '#src/lib/NodeConfig.ts'
@@ -19,6 +20,7 @@ export type Args = (typeof builder) extends CommandBuilder<any, infer U> ? Argum
 const handler = async (args: Args) => {
   console.dir(args)
   const configMapper = {
+    bun: BunConfig,
     generic: GenericConfig,
     node: NodeConfig,
     react: ReactConfig,
@@ -42,6 +44,7 @@ const builder = (argv: Argv) => {
         `react`,
         `node`,
         `generic`,
+        `bun`,
       ],
       default: `generic`,
     },

@@ -1,7 +1,7 @@
 import {RuntimeConfig} from '#src/lib/base/RuntimeConfig.ts'
 
-export class NodeConfig extends RuntimeConfig {
+export class BunConfig extends RuntimeConfig {
   constructor() {
-    super('node')
+    super('bun-types')
   }
 }
