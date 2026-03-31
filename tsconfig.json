@@ -1,3 +1,11 @@
 {
   "extends": "./node_modules/tsconfig-jaid-node/base.json",
+  "compilerOptions": {
+    "types": [
+      "bun"
+    ]
+  },
+  "exclude": [
+    "./private/agent/**/*"
+  ]
 }

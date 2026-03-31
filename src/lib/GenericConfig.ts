@@ -3,36 +3,34 @@ import type {TsConfigJson} from 'type-fest'
 
 import Config from '#src/lib/Config.ts'
 
-const prefix = `../..`
 const folders = [
-  `src`,
-  `lib`,
-  `test`,
-  `scripts`,
-  `etc`,
+  'src',
+  'lib',
+  'test',
+  'scripts',
+  'etc',
 ]
 const shortcuts = new Map<string, ShortcutTarget>([
-  [`root`, `*`],
-  [`src`, `src/*`],
-  [`etc`, [`etc/*`, `src/etc/*`]],
-  [`lib`, [`lib/*`, `src/lib/*`]],
-  [`media`, `media/*`],
+  ['root', '*'],
+  ['src', 'src/*'],
+  ['etc', ['etc/*', 'src/etc/*']],
+  ['lib', ['lib/*', 'src/lib/*']],
+  ['media', 'media/*'],
 ])
 const baseConfig: TsConfigJson = {
   compilerOptions: {
     allowArbitraryExtensions: true,
     allowImportingTsExtensions: true,
-    baseUrl: prefix,
     composite: true,
-    module: `esnext`,
-    moduleDetection: `force`,
+    module: 'esnext',
+    moduleDetection: 'force',
     verbatimModuleSyntax: true,
-    moduleResolution: `bundler`,
-    newLine: `lf`,
+    moduleResolution: 'bundler',
+    newLine: 'lf',
     skipLibCheck: true,
     strictNullChecks: true,
     allowJs: true,
-    target: `esnext`,
+    target: 'esnext',
     experimentalDecorators: true,
     noEmit: true,
     inlineSourceMap: true,
@@ -46,14 +44,14 @@ const baseConfig: TsConfigJson = {
 export class GenericConfig extends Config {
   constructor() {
     super(baseConfig)
-    this.setOutDir(`out/ts`)
-    this.addInclude(``, false)
+    this.setOutDir('out/ts')
+    this.addInclude('', false)
     for (const folder of folders) {
       this.addInclude(folder)
     }
     for (const [name, target] of shortcuts) {
       this.addShortcut(name, target)
     }
-    this.addLib(`esnext`)
+    this.addLib('esnext')
   }
 }

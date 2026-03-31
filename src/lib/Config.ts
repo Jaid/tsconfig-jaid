@@ -4,26 +4,26 @@ import ensureEnd from 'ensure-end'
 
 export type ShortcutTarget = Array<string> | string | true
 
-export default class {
+export default class Config {
+  static readonly configDirPlaceholder = '${configDir}'
+
   tsconfig: TsConfigJson = {}
+
   constructor(baseConfig: TsConfigJson) {
-    Object.assign(this.tsconfig, baseConfig)
+    this.tsconfig = structuredClone(baseConfig)
   }
+
   addInclude(include: string, recursive = true) {
     if (!this.tsconfig.include) {
       this.tsconfig.include = []
     }
-    let suffix
-    if (recursive) {
-      suffix = `**/*`
-    } else {
-      suffix = `*`
-    }
+    let suffix = recursive ? '**/*' : '*'
     if (include.length > 0) {
       suffix = `/${suffix}`
     }
     this.tsconfig.include.push(ensureEnd(this.resolveWithPrefix(include), suffix))
   }
+
   addLib(name: TsConfigJson.CompilerOptions.Lib) {
     if (!this.tsconfig.compilerOptions) {
       this.tsconfig.compilerOptions = {}
@@ -33,6 +33,7 @@ export default class {
     }
     this.tsconfig.compilerOptions.lib.push(name)
   }
+
   addShortcut(name: string, target: ShortcutTarget, highPriority = true) {
     if (!this.tsconfig.compilerOptions) {
       this.tsconfig.compilerOptions = {}
@@ -40,44 +41,50 @@ export default class {
     if (!this.tsconfig.compilerOptions.paths) {
       this.tsconfig.compilerOptions.paths = {}
     }
-    const virtualPath = ensureEnd(name, `/*`) as string
+    const virtualPath = ensureEnd(name, '/*') as string
     const resolvedTarget = this.resolveTarget(name, target)
     if (highPriority) {
       this.tsconfig.compilerOptions.paths = {
         [virtualPath]: resolvedTarget,
         ...this.tsconfig.compilerOptions.paths,
       }
-    } else {
-      this.tsconfig.compilerOptions.paths[virtualPath] = resolvedTarget
+      return
     }
+    this.tsconfig.compilerOptions.paths[virtualPath] = resolvedTarget
   }
-  getPrefix(): string | undefined {
-    if (this.tsconfig.compilerOptions?.baseUrl) {
-      return ensureEnd(this.tsconfig.compilerOptions.baseUrl, `/`)
-    }
+
+  getPrefix(): string {
+    return ensureEnd(Config.configDirPlaceholder, '/')
   }
+
   resolveTarget(name: string, target: ShortcutTarget): Array<string> {
     if (Array.isArray(target)) {
-      return target
+      return target.map(value => this.resolveWithPrefix(value))
     }
     if (target === true) {
-      return [`${name}/*`]
+      return [this.resolveWithPrefix(`${name}/*`)]
     }
-    return [target]
+    return [this.resolveWithPrefix(target)]
   }
-  resolveWithPrefix(target: string) {
+
+  resolveWithPrefix(target: string): string {
     const prefix = this.getPrefix()
-    if (prefix) {
-      return `${prefix}${target}`
+    if (target === '') {
+      return prefix
     }
-    return target
+    if (target.startsWith(prefix)) {
+      return target
+    }
+    return `${prefix}${target}`
   }
+
   setOutDir(outDir: string) {
     if (!this.tsconfig.compilerOptions) {
       this.tsconfig.compilerOptions = {}
     }
     this.tsconfig.compilerOptions.outDir = this.resolveWithPrefix(outDir)
   }
+
   toJson() {
     return JSON.stringify(this.tsconfig)
   }
