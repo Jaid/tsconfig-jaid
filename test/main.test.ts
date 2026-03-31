@@ -37,6 +37,7 @@ type ModeExpectation = {
   module: TsConfigJson.CompilerOptions.Module
   moduleResolution: TsConfigJson.CompilerOptions.ModuleResolution
   packageName: string
+  types?: Array<string>
 }
 
 const modeExpectations: Record<Mode, ModeExpectation> = {
@@ -52,6 +53,7 @@ const modeExpectations: Record<Mode, ModeExpectation> = {
     moduleResolution: 'nodenext',
     jsx: 'react',
     lib: ['esnext'],
+    types: ['node'],
   },
   react: {
     packageName: 'tsconfig-jaid-react',
@@ -150,6 +152,7 @@ describe('build script', () => {
         expect(compilerOptions.moduleResolution).toBe(expected.moduleResolution)
         expect(compilerOptions.jsx).toBe(expected.jsx)
         expect(compilerOptions.lib).toEqual(expected.lib)
+        expect(compilerOptions.types).toEqual(expected.types)
         const projectFile = path.join(fixture.tempRoot, 'tsconfig.json')
         const compileResult = await runBun(['x', 'tsc', '--project', projectFile, '--pretty', 'false'])
         ensureSucceeded(`${mode} compile`, compileResult)
@@ -159,6 +162,7 @@ describe('build script', () => {
         expect(resolvedConfig.compilerOptions?.baseUrl).toBeUndefined()
         expect(resolvedConfig.compilerOptions?.outDir).toBe('./out/ts')
         expect(resolvedConfig.compilerOptions?.paths).toBeUndefined()
+        expect(resolvedConfig.compilerOptions?.types).toEqual(expected.types)
         expect(resolvedConfig.include).toEqual([
           path.join(fixture.tempRoot, '*'),
           path.join(fixture.tempRoot, 'src/**/*'),

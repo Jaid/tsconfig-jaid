@@ -32,6 +32,16 @@ export default class Config {
     this.tsconfig.compilerOptions.lib.push(name)
   }
 
+  addTypes(...names: Array<string>) {
+    if (!this.tsconfig.compilerOptions) {
+      this.tsconfig.compilerOptions = {}
+    }
+    if (!this.tsconfig.compilerOptions.types) {
+      this.tsconfig.compilerOptions.types = []
+    }
+    this.tsconfig.compilerOptions.types.push(...names)
+  }
+
   getPrefix(): string {
     return ensureEnd(Config.configDirPlaceholder, '/')
   }
