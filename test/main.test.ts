@@ -93,6 +93,12 @@ const createModeFixture = async (mode: Mode) => {
   await Promise.all([
     fs.writeJson(path.join(tempRoot, 'package.json'), {
       type: 'module',
+      imports: {
+        '#/*': './*',
+        '#root/*': './*',
+        '#src/*': './src/*',
+        '#lib/*': './src/lib/*',
+      },
     }, {
       spaces: 2,
     }),
@@ -105,32 +111,14 @@ const createModeFixture = async (mode: Mode) => {
     fs.outputFile(path.join(tempRoot, 'util.ts'), `export const rootValue = 1\n`),
     fs.outputFile(path.join(tempRoot, 'src/feature.ts'), `export const srcValue = 2\n`),
     fs.outputFile(path.join(tempRoot, 'src/lib/helper.ts'), `export const libValue = 3\n`),
-    fs.outputFile(path.join(tempRoot, 'etc/info.ts'), `export const etcValue = 4\n`),
-    ...(mode === 'react' ? [
-      fs.outputFile(path.join(tempRoot, 'src/components/Example/index.tsx'), `export const componentValue = 5\n`),
-    ] : []),
   ])
-  const sampleImports = [
-    `import {rootValue} from 'root/util.ts'`,
-    `import {srcValue} from 'src/feature.ts'`,
-    `import {libValue} from 'lib/helper.ts'`,
-    `import {etcValue} from 'etc/info.ts'`,
-  ]
-  const totalParts = [
-    'rootValue',
-    'srcValue',
-    'libValue',
-    'etcValue',
-  ]
-  if (mode === 'react') {
-    sampleImports.push(`import {componentValue} from 'component/Example'`)
-    totalParts.push('componentValue')
-  }
   await fs.writeFile(path.join(tempRoot, 'sample.ts'), [
-    ...sampleImports,
+    `import {rootValue} from '#root/util.ts'`,
+    `import {srcValue} from '#src/feature.ts'`,
+    `import {libValue} from '#lib/helper.ts'`,
     '',
     `type Choice = 'foo' | 'bar'`,
-    `const total = ${totalParts.join(' + ')}`,
+    `const total = rootValue + srcValue + libValue`,
     `export const choice: Choice = total > 0 ? 'bar' : 'foo'`,
     '',
   ].join('\n'))
@@ -156,33 +144,12 @@ describe('build script', () => {
         expect(fixture.builtPackage.exports).toBe('./base.json')
         expect(compilerOptions.baseUrl).toBeUndefined()
         expect(compilerOptions.outDir).toBe(`${configDirPlaceholder}/out/ts`)
+        expect(compilerOptions.paths).toBeUndefined()
         expect(fixture.baseConfig.include).toEqual(expectedIncludes)
         expect(compilerOptions.module).toBe(expected.module)
         expect(compilerOptions.moduleResolution).toBe(expected.moduleResolution)
         expect(compilerOptions.jsx).toBe(expected.jsx)
         expect(compilerOptions.lib).toEqual(expected.lib)
-        expect(compilerOptions.paths).toMatchObject({
-          'etc/*': [`${configDirPlaceholder}/etc/*`, `${configDirPlaceholder}/src/etc/*`],
-          'lib/*': [`${configDirPlaceholder}/lib/*`, `${configDirPlaceholder}/src/lib/*`],
-          'root/*': [`${configDirPlaceholder}/*`],
-          'src/*': [`${configDirPlaceholder}/src/*`],
-        })
-        if (mode === 'react') {
-          expect(compilerOptions.paths).toMatchObject({
-            'component/*': [
-              `${configDirPlaceholder}/src/components/*/index.tsx`,
-              `${configDirPlaceholder}/src/components/*/index.ts`,
-              `${configDirPlaceholder}/src/components/*.tsx`,
-              `${configDirPlaceholder}/src/components/*.ts`,
-            ],
-            '~/component/*': [
-              `${configDirPlaceholder}/src/components/*/index.tsx`,
-              `${configDirPlaceholder}/src/components/*/index.ts`,
-              `${configDirPlaceholder}/src/components/*.tsx`,
-              `${configDirPlaceholder}/src/components/*.ts`,
-            ],
-          })
-        }
         const projectFile = path.join(fixture.tempRoot, 'tsconfig.json')
         const compileResult = await runBun(['x', 'tsc', '--project', projectFile, '--pretty', 'false'])
         ensureSucceeded(`${mode} compile`, compileResult)
@@ -191,28 +158,7 @@ describe('build script', () => {
         const resolvedConfig = JSON.parse(showConfigResult.stdout) as TsConfigJson
         expect(resolvedConfig.compilerOptions?.baseUrl).toBeUndefined()
         expect(resolvedConfig.compilerOptions?.outDir).toBe('./out/ts')
-        expect(resolvedConfig.compilerOptions?.paths).toMatchObject({
-          'etc/*': [path.join(fixture.tempRoot, 'etc/*'), path.join(fixture.tempRoot, 'src/etc/*')],
-          'lib/*': [path.join(fixture.tempRoot, 'lib/*'), path.join(fixture.tempRoot, 'src/lib/*')],
-          'root/*': [path.join(fixture.tempRoot, '*')],
-          'src/*': [path.join(fixture.tempRoot, 'src/*')],
-        })
-        if (mode === 'react') {
-          expect(resolvedConfig.compilerOptions?.paths).toMatchObject({
-            'component/*': [
-              path.join(fixture.tempRoot, 'src/components/*/index.tsx'),
-              path.join(fixture.tempRoot, 'src/components/*/index.ts'),
-              path.join(fixture.tempRoot, 'src/components/*.tsx'),
-              path.join(fixture.tempRoot, 'src/components/*.ts'),
-            ],
-            '~/component/*': [
-              path.join(fixture.tempRoot, 'src/components/*/index.tsx'),
-              path.join(fixture.tempRoot, 'src/components/*/index.ts'),
-              path.join(fixture.tempRoot, 'src/components/*.tsx'),
-              path.join(fixture.tempRoot, 'src/components/*.ts'),
-            ],
-          })
-        }
+        expect(resolvedConfig.compilerOptions?.paths).toBeUndefined()
         expect(resolvedConfig.include).toEqual([
           path.join(fixture.tempRoot, '*'),
           path.join(fixture.tempRoot, 'src/**/*'),

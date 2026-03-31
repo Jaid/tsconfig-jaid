@@ -1,4 +1,3 @@
-import type {ShortcutTarget} from '#src/lib/Config.ts'
 import type {TsConfigJson} from 'type-fest'
 
 import Config from '#src/lib/Config.ts'
@@ -10,13 +9,6 @@ const folders = [
   'scripts',
   'etc',
 ]
-const shortcuts = new Map<string, ShortcutTarget>([
-  ['root', '*'],
-  ['src', 'src/*'],
-  ['etc', ['etc/*', 'src/etc/*']],
-  ['lib', ['lib/*', 'src/lib/*']],
-  ['media', 'media/*'],
-])
 const baseConfig: TsConfigJson = {
   compilerOptions: {
     allowArbitraryExtensions: true,
@@ -48,9 +40,6 @@ export class GenericConfig extends Config {
     this.addInclude('', false)
     for (const folder of folders) {
       this.addInclude(folder)
-    }
-    for (const [name, target] of shortcuts) {
-      this.addShortcut(name, target)
     }
     this.addLib('esnext')
   }
