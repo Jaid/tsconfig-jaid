@@ -9,5 +9,6 @@ export class NodeConfig extends GenericConfig {
     this.tsconfig.compilerOptions.module = `nodenext`
     this.tsconfig.compilerOptions.moduleResolution = `nodenext`
     this.tsconfig.compilerOptions.jsx = 'react' // React support for https://github.com/vadimdemedes/ink
+    this.tsconfig.compilerOptions.types = [`node`]
   }
 }
