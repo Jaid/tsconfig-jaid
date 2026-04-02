@@ -13,6 +13,7 @@ const baseConfig: TsConfigJson = {
   compilerOptions: {
     allowArbitraryExtensions: true,
     allowImportingTsExtensions: true,
+    rewriteRelativeImportExtensions: true,
     composite: true,
     module: 'esnext',
     moduleDetection: 'force',
