@@ -33,11 +33,13 @@ type CommandResult = {
 }
 
 type ModeExpectation = {
+  dependencies?: PackageJson['dependencies']
   jsx?: TsConfigJson.CompilerOptions.JSX
   lib: Array<TsConfigJson.CompilerOptions.Lib>
   module: TsConfigJson.CompilerOptions.Module
   moduleResolution: TsConfigJson.CompilerOptions.ModuleResolution
   packageName: string
+  peerDependencies?: PackageJson['peerDependencies']
   types?: Array<string>
 }
 
@@ -47,21 +49,36 @@ const modeExpectations: Record<Mode, ModeExpectation> = {
     module: 'esnext',
     moduleResolution: 'bundler',
     lib: ['esnext'],
+    peerDependencies: {
+      typescript: '^6',
+    },
   },
   node: {
     packageName: 'tsconfig-jaid-node',
+    dependencies: {
+      '@types/node': '*',
+    },
     module: 'nodenext',
     moduleResolution: 'nodenext',
     jsx: 'react',
     lib: ['esnext'],
+    peerDependencies: {
+      typescript: '^6',
+    },
     types: ['node'],
   },
   bun: {
     packageName: 'tsconfig-jaid-bun',
+    dependencies: {
+      'bun-types': '*',
+    },
     module: 'nodenext',
     moduleResolution: 'nodenext',
     jsx: 'react',
     lib: ['esnext'],
+    peerDependencies: {
+      typescript: '^6',
+    },
     types: ['bun-types'],
   },
   react: {
@@ -70,6 +87,9 @@ const modeExpectations: Record<Mode, ModeExpectation> = {
     moduleResolution: 'bundler',
     jsx: 'react-jsx',
     lib: ['esnext', 'dom', 'webworker'],
+    peerDependencies: {
+      typescript: '^6',
+    },
   },
 }
 
@@ -124,9 +144,9 @@ const createModeFixture = async (mode: Mode) => {
     fs.outputFile(path.join(tempRoot, 'src/lib/helper.ts'), `export const libValue = 3\n`),
   ])
   const sampleLines = [
-    `import {rootValue} from '#root/util.ts'`,
-    `import {srcValue} from '#src/feature.ts'`,
-    `import {libValue} from '#lib/helper.ts'`,
+    `import {rootValue} from '#root/util.js'`,
+    `import {srcValue} from '#src/feature.js'`,
+    `import {libValue} from '#lib/helper.js'`,
     '',
     `type Choice = 'foo' | 'bar'`,
     `const total = rootValue + srcValue + libValue`,
@@ -160,6 +180,8 @@ describe('build script', () => {
         const compilerOptions = fixture.baseConfig.compilerOptions ?? {}
         expect(fixture.builtPackage.name).toBe(expected.packageName)
         expect(fixture.builtPackage.exports).toBe('./base.json')
+        expect(fixture.builtPackage.dependencies).toEqual(expected.dependencies)
+        expect(fixture.builtPackage.peerDependencies).toEqual(expected.peerDependencies)
         expect(compilerOptions.baseUrl).toBeUndefined()
         expect(compilerOptions.outDir).toBe(`${configDirPlaceholder}/out/ts`)
         expect(compilerOptions.paths).toBeUndefined()

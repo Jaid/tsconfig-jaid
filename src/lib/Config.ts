@@ -1,4 +1,4 @@
-import type {TsConfigJson} from 'type-fest'
+import type {PackageJson, TsConfigJson} from 'type-fest'
 
 import ensureEnd from 'ensure-end'
 
@@ -67,4 +67,6 @@ export default class Config {
   toJson() {
     return JSON.stringify(this.tsconfig)
   }
+
+  modifyPackageJson(packageJson: PackageJson) {}
 }

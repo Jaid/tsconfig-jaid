@@ -1,4 +1,4 @@
-import type {TsConfigJson} from 'type-fest'
+import type {PackageJson, TsConfigJson} from 'type-fest'
 
 import Config from '#src/lib/Config.ts'
 
@@ -43,5 +43,12 @@ export class GenericConfig extends Config {
       this.addInclude(folder)
     }
     this.addLib('esnext')
+  }
+  modifyPackageJson(packageJson: PackageJson) {
+    super.modifyPackageJson(packageJson)
+    if (!packageJson.peerDependencies) {
+      packageJson.peerDependencies = {}
+    }
+    packageJson.peerDependencies.typescript = '^6'
   }
 }
