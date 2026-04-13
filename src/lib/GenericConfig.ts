@@ -26,6 +26,7 @@ const baseConfig: TsConfigJson = {
     experimentalDecorators: true,
     noEmit: true,
     inlineSourceMap: true,
+    resolveJsonModule: true,
     // inlineSources: true,
   },
   typeAcquisition: {
@@ -37,9 +38,9 @@ export class GenericConfig extends Config {
   constructor() {
     super(baseConfig)
     this.setOutDir('out/ts')
-    this.addInclude('', false)
+    this.addFolderInclude('', false)
     for (const folder of folders) {
-      this.addInclude(folder)
+      this.addFolderInclude(folder)
     }
     this.addLib('esnext')
   }

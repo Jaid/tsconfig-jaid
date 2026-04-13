@@ -11,15 +11,20 @@ export default class Config {
     this.tsconfig = structuredClone(baseConfig)
   }
 
-  addInclude(include: string, recursive = true) {
+  addInclude(file: string) {
     if (!this.tsconfig.include) {
       this.tsconfig.include = []
     }
+    this.tsconfig.include.push(this.resolveWithPrefix(file))
+  }
+
+  addFolderInclude(folder: string, recursive = true) {
     let suffix = recursive ? '**/*' : '*'
-    if (include.length > 0) {
+    if (folder.length > 0) {
       suffix = `/${suffix}`
     }
-    this.tsconfig.include.push(ensureEnd(this.resolveWithPrefix(include), suffix))
+    const resolved = ensureEnd(folder, suffix)
+    this.addInclude(resolved)
   }
 
   addLib(name: TsConfigJson.CompilerOptions.Lib) {
