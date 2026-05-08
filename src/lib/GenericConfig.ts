@@ -7,7 +7,7 @@ const folders = [
   'lib',
   'test',
   'scripts',
-  'etc',
+  'packages',
 ]
 const baseConfig: TsConfigJson = {
   compilerOptions: {
