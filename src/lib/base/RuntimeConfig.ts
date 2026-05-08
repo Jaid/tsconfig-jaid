@@ -8,7 +8,7 @@ export class RuntimeConfig extends GenericConfig {
     }
     this.tsconfig.compilerOptions.module = 'nodenext'
     this.tsconfig.compilerOptions.moduleResolution = 'nodenext'
-    this.tsconfig.compilerOptions.jsx = 'react' // React support for https://github.com/vadimdemedes/ink
+    this.tsconfig.compilerOptions.jsx = 'react-jsx' // React support for https://github.com/vadimdemedes/ink
     this.addTypes(...types)
   }
 }
