@@ -25,6 +25,7 @@ export default class Config {
     }
     const resolved = ensureEnd(folder, suffix)
     this.addInclude(resolved)
+    this.addInclude(`${resolved}.json`)
   }
 
   addLib(name: TsConfigJson.CompilerOptions.Lib) {
