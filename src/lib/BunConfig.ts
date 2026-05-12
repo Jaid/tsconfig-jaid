@@ -10,6 +10,6 @@ export class BunConfig extends RuntimeConfig {
     if (!packageJson.dependencies) {
       packageJson.dependencies = {}
     }
-    packageJson.dependencies['bun-types'] = '*'
+    packageJson.dependencies['bun-types'] = '^1'
   }
 }
