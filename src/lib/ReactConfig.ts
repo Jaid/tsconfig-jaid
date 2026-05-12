@@ -1,6 +1,6 @@
-import {GenericConfig} from '#src/lib/GenericConfig.ts'
+import {BunConfig} from '#src/lib/BunConfig.ts'
 
-export class ReactConfig extends GenericConfig {
+export class ReactConfig extends BunConfig {
   constructor() {
     super()
     this.addLib('dom')
