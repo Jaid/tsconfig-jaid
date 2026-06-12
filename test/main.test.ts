@@ -180,6 +180,9 @@ describe('build script', () => {
         const compilerOptions = fixture.baseConfig.compilerOptions ?? {}
         expect(fixture.builtPackage.name).toBe(expected.packageName)
         expect(fixture.builtPackage.exports).toBe('./base.json')
+        expect(fixture.builtPackage.bugs).toEqual({
+          url: 'https://github.com/jaid/tsconfig-jaid/issues',
+        })
         expect(fixture.builtPackage.dependencies).toEqual(expected.dependencies)
         expect(fixture.builtPackage.peerDependencies).toEqual(expected.peerDependencies)
         expect(compilerOptions.baseUrl).toBeUndefined()
