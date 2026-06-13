@@ -1,5 +1,8 @@
 {
   "version": "15.2.0",
+  "bugs": {
+    "url": "https://github.com/jaid/tsconfig-jaid/issues"
+  },
   "type": "module",
   "name": "tsconfig-jaid",
   "license": "MIT",
