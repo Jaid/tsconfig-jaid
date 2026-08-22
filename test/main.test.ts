@@ -70,16 +70,16 @@ const modeExpectations: Record<Mode, ModeExpectation> = {
   bun: {
     packageName: 'tsconfig-jaid-bun',
     dependencies: {
-      'bun-types': '*',
+      '@types/bun': '^1',
     },
-    module: 'nodenext',
-    moduleResolution: 'nodenext',
+    module: 'preserve',
+    moduleResolution: 'bundler',
     jsx: 'react',
     lib: ['esnext'],
     peerDependencies: {
       typescript: '^6',
     },
-    types: ['bun-types'],
+    types: ['bun'],
   },
   react: {
     packageName: 'tsconfig-jaid-react',
