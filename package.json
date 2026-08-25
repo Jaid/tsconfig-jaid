@@ -19,6 +19,9 @@
     "type": "git",
     "url": "https://github.com/jaid/tsconfig-jaid"
   },
+  "bugs": {
+    "url": "https://github.com/jaid/tsconfig-jaid/issues"
+  },
   "imports": {
     "#/*": "./*",
     "#root/*": "./*",

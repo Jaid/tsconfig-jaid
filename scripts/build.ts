@@ -32,7 +32,7 @@ const handler = async (args: Args) => {
     name: args.mode === `generic` ? parentPkg.name : `${parentPkg.name}-${args.mode}`,
     exports: `./base.json`,
     keywords: parentPkg.keywords,
-    ...lodash.pick(parentPkg, `version`, `dependencies`, `peerDependencies`, `repository`, `funding`, `author`, `homepage`, `license`),
+    ...lodash.pick(parentPkg, `version`, `dependencies`, `peerDependencies`, `repository`, `bugs`, `funding`, `author`, `homepage`, `license`),
   }
   config.modifyPackageJson(pkg)
   await fs.outputJson(path.join(args.outputFolder, `base.json`), config.tsconfig)
